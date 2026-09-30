@@ -15,3 +15,8 @@ The 9 p.m. routine trig_012sH95aq8NqKtkZaoen2f5b is now DISABLED (kept, not dele
 
 ## Test
 30 Sep 2026 07:56 Cairo — drill sent (Telegram message_id 42) about a message to Atef on cancelled mix orders.
+
+## Coach Layla on Telegram (30 Sep 2026)
+Coach Layla weekly (trig_01PQSojWPTtBhLue37itaUxy, Thu 9 p.m. Cairo) now sends only 3 lines to Telegram — see coach-layla-weekly-v6.md.
+Delivery: row in data table telegram_outbox (KlWVqsPNNibKlgoa) → n8n workflow r0oXGGbxzgfuMKR0 "NI — Telegram Outbox to Ahmed" (manual trigger, no public endpoint) sends the newest row.
+Tested 30 Sep 2026 08:50 Cairo with a setup message — execution 39869 success.
