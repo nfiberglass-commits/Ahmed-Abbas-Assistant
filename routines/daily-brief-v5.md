@@ -16,6 +16,7 @@ STEPS:
    "from:nfiberglass@gmail.com newer_than:1d" (pageSize 50, page through all), and for weekly reports "from:nfiberglass@gmail.com newer_than:7d subject:(Weekly OR OEE OR \"Order Book\" OR Undelivered OR \"أسبوعي\")".
    Skip "[TEST]" emails unless they are the only data for a department (then say it is test data).
    Open each report with get_thread (FULL_CONTENT) and extract ONLY the headline numbers. Large threads are saved to a file — read with jq/python.
+   Some reports keep their numbers in an .html ATTACHMENT, not the body (OEE Weekly Production Evaluation, Weekly Delivery Briefs). Download and read the attachment (Gmail attachment / Drive copy) and take the headline KPIs (OEE %, availability, performance, quality, production vs capacity). Only if the attachment truly cannot be opened, say "figures are in the attachment — not read".
    Classify every report into a department:
    - SALES / COMMERCIAL: Inquiry Review (SOE), Open Order Book, Undelivered SOs, Weekly Delivery Briefs (sales part), Weekly Follow-up, RFQ/Odoo leads.
    - PRODUCTION & PLANNING: OEE Weekly, [GATE] order lines, weekly MO review (مراجعة أوامر التشغيل), Weekly Delivery Briefs (production part), Production Status, Plan Notes.
@@ -43,7 +44,7 @@ STEPS:
 
    C. DEPARTMENT DASHBOARD — one card per department (Sales · Production & Planning · Quality · Maintenance · Stores/Inventory/Finance · HR & Admin). Each card:
       - Status: 🟢 on track / 🟡 watch / 🔴 problem (say the reason in 5–10 words)
-      - 3–5 key numbers (e.g. open orders, overdue, on-time %, OEE %, QC fails, open tickets)
+      - 3–5 key numbers (e.g. open orders, overdue, on-time %, OEE %, QC fails, open tickets) — HARD MAX 5 bullets per card; merge or drop the rest
       - Change vs yesterday / last report (↑ ↓ =), only when the prior value is in a source
       - One line: "Needs from you:" (or "Nothing")
       - Source line in small grey text: report names + dates
@@ -57,6 +58,7 @@ STEPS:
    G. TODAY — calendar lines + n8n health line.
 
    Then the full ARABIC version of A–G (RTL block, same structure).
+   ARABIC QUALITY CHECK (fix before saving): dates must keep the real year (e.g. 01-Apr-2026 → ٢٠٢٦-٠٤-٠١, never ١٠٠٠); every number must equal the English number; spell ملاحظة / ملاحظات correctly (not ملاحطة); keep the same source lines as the English cards.
 
    Build the HTML with single-quoted attributes and NO literal double quotes. NEVER two adjacent curly braces (put a newline between CSS closing braces).
 
